@@ -75,7 +75,7 @@ void loop() {
     servoRotate.write(servoRotate.read() + rotateFlag);
   }
   prevSwitchBlue = currentSwitchBlue;
-  taskEndTime = micors();
+  taskEndTime = micros();
   Serial.println("execution time is " + (String)(taskEndTime - taskStartTime) + "[us]");
   delay(100);
 }
