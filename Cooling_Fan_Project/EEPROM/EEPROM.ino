@@ -1,4 +1,5 @@
 #include <Servo.h>
+#include <EEPROM.h>
 #define PIN_MOTOR_CTRL_0 3
 #define PIN_MOTOR_CTRL_1 11
 #define PIN_SWITCH_GREEN 8
@@ -29,6 +30,8 @@ void setup() {
   analogWrite(PIN_MOTOR_CTRL_0, 0);
   analogWrite(PIN_MOTOR_CTRL_1, 0);
   Serial.begin(115200);
+  Serial.print("EEPROM.read(0) : ");
+  Serial.println(EEPROM.read(0));
 }
 void loop() {
   // Fan Control
@@ -53,6 +56,7 @@ void loop() {
   // Rotate Control
   int currentSwitchBlue = digitalRead(PIN_SWITCH_BLUE);
   if ((prevSwitchBlue == LOW) && (currentSwitchBlue == HIGH)) {
+    EEPROM.write(0, EEPROM.read(0) + 1);
     rotateFlag = 1;
   }
   if ((servoRotate.read() < 30) || (servoRotate.read() > 150)) {
