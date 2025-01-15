@@ -16,7 +16,7 @@ int taskStartTime = 0;
 int taskEndTime = 0;
 Servo servoRotate;
 void setup() {
-  taskStartTime = 0;
+  taskStartTime = micros();
   attachInterrupt(digitalPinToInterrupt
                   (PIN_SWITCH_BLACK), isrSwitchBlack, RISING);
   servoRotate.attach(PIN_SERVO_CTRL);
